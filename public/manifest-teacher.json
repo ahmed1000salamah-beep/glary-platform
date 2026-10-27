@@ -1,0 +1,35 @@
+{
+  "id": "/teacher",
+  "name": "منصة مستر أحمد المعاطي - تطبيق المعلم",
+  "short_name": "تطبيق المعلم",
+  "description": "منصة مستر أحمد المعاطي - لوحة تحكم المعلم وإدارة المحتوى والطلاب والدرجات.",
+  "start_url": "/teacher",
+  "scope": "/teacher",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#d97706",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/pwa-teacher-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-teacher-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-teacher-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

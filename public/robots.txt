@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /$
+Allow: /#*
+Allow: /assets/
+Allow: /pwa-*
+Allow: /icon.svg
+Allow: /apple-touch-icon.png
+Disallow: /teacher
+Disallow: /teacher/
+Disallow: /secretary
+Disallow: /secretary/
+Disallow: /*?role=teacher*
+Disallow: /*?role=secretary*
+Disallow: /*mode=teacher_portal*
+
+Sitemap: https://ais-pre-wivuv6clztv53mmyvz7r7a-656032955753.europe-west2.run.app/sitemap.xml

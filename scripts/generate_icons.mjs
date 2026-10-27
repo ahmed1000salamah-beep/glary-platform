@@ -1,0 +1,102 @@
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+
+const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Dark Royal Blue Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12307d" />
+      <stop offset="50%" stop-color="#0a1d52" />
+      <stop offset="100%" stop-color="#061238" />
+    </linearGradient>
+
+    <!-- Light Blue Cap Gradient -->
+    <linearGradient id="capGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+
+    <!-- Golden Tassel Gradient -->
+    <linearGradient id="tasselGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow for Emblem -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#020617" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Subtle Outer Ring Accent -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="4" />
+
+  <!-- Main Emblem Group -->
+  <g filter="url(#shadow)">
+    <!-- 1. GRADUATION CAP (MORTARBOARD) TOP DIAMOND -->
+    <path d="M256 95 L445 185 L256 275 L67 185 Z" fill="url(#capGrad)" />
+
+    <!-- Cap Diamond Bottom Edge Highlight -->
+    <path d="M256 275 L445 185" fill="none" stroke="#93c5fd" stroke-width="4" stroke-linecap="round" />
+
+    <!-- 2. SKULL CAP / NECK BELOW DIAMOND -->
+    <path d="M130 218 V295 C130 315 180 345 256 345 C332 345 382 315 382 295 V218" 
+          fill="none" stroke="#60a5fa" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Inner Skull Cap Fill -->
+    <path d="M142 225 V292 C142 305 188 332 256 332 C324 332 370 305 370 292 V225 Z" 
+          fill="#0f2b75" opacity="0.9" />
+
+    <!-- 3. GOLDEN TASSEL ON RIGHT -->
+    <!-- Tassel String -->
+    <path d="M382 185 C392 210 395 240 392 270" fill="none" stroke="url(#tasselGrad)" stroke-width="7" stroke-linecap="round" />
+    <!-- Tassel Ring / Button -->
+    <circle cx="392" cy="275" r="7" fill="#fde047" />
+    <!-- Tassel Fringe / Brush -->
+    <path d="M382 280 L402 335 C402 338 382 342 378 335 Z" fill="url(#tasselGrad)" />
+
+    <!-- 4. OPEN BOOK AT BOTTOM -->
+    <!-- Left Page -->
+    <path d="M112 375 Q184 350 256 385 V435 Q184 400 112 420 Z" fill="#ffffff" />
+    <!-- Right Page -->
+    <path d="M400 375 Q328 350 256 385 V435 Q328 400 400 420 Z" fill="#f1f5f9" />
+    <!-- Center Spine / Page Divider -->
+    <path d="M256 385 V435" stroke="#3b82f6" stroke-width="5" stroke-linecap="round" />
+    <!-- Top Curved Page Edge Contour -->
+    <path d="M112 375 Q184 350 256 385 Q328 350 400 375" fill="none" stroke="#e2e8f0" stroke-width="3" />
+  </g>
+</svg>`;
+
+async function generate() {
+  const publicDir = path.resolve('public');
+  fs.writeFileSync(path.join(publicDir, 'icon.svg'), svgContent, 'utf-8');
+  console.log('Saved public/icon.svg');
+
+  const targets = [
+    { name: 'pwa-192x192.png', size: 192 },
+    { name: 'pwa-512x512.png', size: 512 },
+    { name: 'pwa-maskable-512x512.png', size: 512 },
+    { name: 'apple-touch-icon.png', size: 180 },
+    { name: 'pwa-student-192.png', size: 192 },
+    { name: 'pwa-student-512.png', size: 512 },
+    { name: 'pwa-teacher-192.png', size: 192 },
+    { name: 'pwa-teacher-512.png', size: 512 },
+    { name: 'pwa-secretary-192.png', size: 192 },
+    { name: 'pwa-secretary-512.png', size: 512 },
+  ];
+
+  for (const t of targets) {
+    const outPath = path.join(publicDir, t.name);
+    await sharp(Buffer.from(svgContent))
+      .resize(t.size, t.size)
+      .png()
+      .toFile(outPath);
+    console.log(`Generated ${t.name} (${t.size}x${t.size})`);
+  }
+}
+
+generate().catch(console.error);

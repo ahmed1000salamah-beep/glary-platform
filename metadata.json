@@ -1,0 +1,6 @@
+{
+  "name": "منصة جلري التعليمية",
+  "description": "منصة جلري التعليمية للغة الإنجليزية - الأستاذ أحمد المعاطي. بوابة ذكية متكاملة لمتابعة الطلاب مع نظام إدارة متطور للمعلم والسكرتير وتطبيق قابل للتثبيت.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

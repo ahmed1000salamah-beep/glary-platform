@@ -1,0 +1,35 @@
+{
+  "id": "/",
+  "name": "منصة مستر أحمد المعاطي التعليمية",
+  "short_name": "منصة جلري",
+  "description": "منصة مستر أحمد المعاطي التعليمية لتدريس اللغة الإنجليزية للثانوية العامة. البوابة الذكية الشاملة للطلاب وأولياء الأمور.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020617",
+  "theme_color": "#1d4ed8",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/pwa-student-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-student-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-student-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
